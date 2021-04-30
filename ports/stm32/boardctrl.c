@@ -126,6 +126,8 @@ void boardctrl_before_soft_reset_loop(boardctrl_state_t *state) {
     // Update the reset_mode via the default
     // method which uses the board switch/button and LEDs.
     state->reset_mode = update_reset_mode(BOARDCTRL_RESET_MODE_NORMAL);
+    #else
+    state->reset_mode = BOARDCTRL_RESET_MODE_NORMAL;
     #endif
 }
 
