@@ -1,4 +1,4 @@
-#define MICROPY_HW_BOARD_NAME       "GHI Electronics SITCore"
+#define MICROPY_HW_BOARD_NAME       "GHI Electronics SITCore v0.1.0"
 #define MICROPY_HW_MCU_NAME         "SC13048"
 
 #define MICROPY_PY_USOCKET          (0)
@@ -32,7 +32,7 @@
 #define MICROPY_HW_UART4_TX     (pin_A0)
 #define MICROPY_HW_UART4_RX     (pin_A1)
 // USART1 is connected to the ST-LINK USB VCP
-#define MICROPY_HW_UART_REPL        PYB_UART_1
+#define MICROPY_HW_UART_REPL        PYB_UART_2
 #define MICROPY_HW_UART_REPL_BAUD   115200
 
 // I2C busses
@@ -81,4 +81,28 @@
 #define USBD_CDC_RX_DATA_SIZE       (256)
 #define USBD_CDC_TX_DATA_SIZE       (256)
 #define MICROPY_HW_ENABLE_INTERNAL_FLASH_STORAGE (MICROPY_HW_USB_MSC)
+#define USBD_VID         (0x1B9F)
+#define USBD_PID_CDC_MSC (0xF100)
+#define USBD_PID_CDC_HID (0xF101)
+#define USBD_PID_CDC     (0xF102)
+#define USBD_PID_MSC     (0xF103)
+#define USBD_PID_CDC2_MSC (0xF104)
+#define USBD_PID_CDC2    (0xF105)
+#define USBD_PID_CDC3    (0xF106)
+#define USBD_PID_CDC3_MSC (0xF107)
+#define USBD_PID_CDC_MSC_HID (0xF108)
+#define USBD_PID_CDC2_MSC_HID (0xF109)
+#define USBD_PID_CDC3_MSC_HID (0xF10A)
+
+#define USBD_MANUFACTURER_STRING      "GHI Electronics"
+#define USBD_PRODUCT_HS_STRING        "SITCore Virtual Comm Port in HS Mode"
+#define USBD_PRODUCT_FS_STRING        "SITCore Virtual Comm Port in FS Mode"
+#define USBD_CONFIGURATION_HS_STRING  "SITCore Config"
+#define USBD_INTERFACE_HS_STRING      "SITCore Interface"
+#define USBD_CONFIGURATION_FS_STRING  "SITCore Config"
+#define USBD_INTERFACE_FS_STRING      "SITCore Interface"
+
+// FS
+#define MICROPY_HW_FLASH_FS_LABEL   "SITCORE"
+
 
