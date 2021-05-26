@@ -345,6 +345,7 @@ SRC_C += \
 	servo.c \
 	dac.c \
 	adc.c \
+	neopixel.c \
 	$(wildcard $(BOARD_DIR)/*.c)
 
 SRC_CXX += \
