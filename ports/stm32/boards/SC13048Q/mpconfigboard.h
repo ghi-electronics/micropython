@@ -40,8 +40,6 @@
 #define MICROPY_HW_I2C1_SDA     (pin_B9)
 #define MICROPY_HW_I2C2_SCL     (pin_B13)
 #define MICROPY_HW_I2C2_SDA     (pin_B14)
-#define MICROPY_HW_I2C3_SCL     (0)
-#define MICROPY_HW_I2C3_SDA     (0)
 #define MICROPY_HW_I2C4_SCL     (pin_B10)
 #define MICROPY_HW_I2C4_SDA     (pin_B11)
 
