@@ -48,6 +48,13 @@ static const char fresh_boot_py[] =
     "#pyb.usb_mode('VCP+MSC') # act as a serial and a storage device\r\n"
     "#pyb.usb_mode('VCP+HID') # act as a serial device and a mouse\r\n"
 #endif
+#if ENABLE_BRAINPAD_DETECT
+    "from machine import Pin\r\n"
+    "detector = Pin('PB15', Pin.IN,Pin.PULL_DOWN)\r\n"
+    "if detector.value() == 0:\r\n"
+    "    ledCat = Pin('PA9', Pin.OUT_PP)\r\n"
+    "    ledCat.high()\r\n"
+#endif
 ;
 
 static const char fresh_main_py[] =
