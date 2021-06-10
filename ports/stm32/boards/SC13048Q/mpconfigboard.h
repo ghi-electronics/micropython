@@ -1,4 +1,4 @@
-#define MICROPY_HW_BOARD_NAME       "GHI Electronics SITCore v0.2.0"
+#define MICROPY_HW_BOARD_NAME       "GHI Electronics SITCore v0.2.1"
 #define MICROPY_HW_MCU_NAME         "SC13048"
 
 #define MICROPY_PY_USOCKET          (0)
@@ -98,5 +98,8 @@
 
 // FS
 #define MICROPY_HW_FLASH_FS_LABEL   "SITCORE"
+
+// Brainpad detect
+#define ENABLE_BRAINPAD_DETECT (1)
 
 
