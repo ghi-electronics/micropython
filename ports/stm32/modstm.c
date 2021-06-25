@@ -36,6 +36,19 @@
 #if MICROPY_PY_STM
 
 #include "genhdr/modstm_mpz.h"
+#include "neopixel.h"
+#include "mphalport.h"
+
+
+STATIC mp_obj_t neopixel_write_(mp_obj_t pin, mp_obj_t buf, mp_obj_t timing) {
+    mp_buffer_info_t bufinfo;
+    mp_get_buffer_raise(buf, &bufinfo, MP_BUFFER_READ);
+    neopixel_write(mp_hal_get_pin_obj(pin)->pin,
+        (uint8_t *)bufinfo.buf, bufinfo.len);
+    return mp_const_none;
+}
+STATIC MP_DEFINE_CONST_FUN_OBJ_3(neopixel_write_obj, neopixel_write_);
+
 
 STATIC const mp_rom_map_elem_t stm_module_globals_table[] = {
     { MP_ROM_QSTR(MP_QSTR___name__), MP_ROM_QSTR(MP_QSTR_stm) },
@@ -51,6 +64,7 @@ STATIC const mp_rom_map_elem_t stm_module_globals_table[] = {
     { MP_ROM_QSTR(MP_QSTR_rfcore_fw_version), MP_ROM_PTR(&rfcore_fw_version_obj) },
     { MP_ROM_QSTR(MP_QSTR_rfcore_sys_hci), MP_ROM_PTR(&rfcore_sys_hci_obj) },
     #endif
+   { MP_ROM_QSTR(MP_QSTR_neopixel_write), MP_ROM_PTR(&neopixel_write_obj) },
 };
 
 STATIC MP_DEFINE_CONST_DICT(stm_module_globals, stm_module_globals_table);

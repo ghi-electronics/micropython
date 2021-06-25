@@ -143,13 +143,13 @@ STATIC machine_hard_i2c_obj_t machine_hard_i2c_obj[MICROPY_HW_MAX_I2C] = {
     [0] = {{&machine_hard_i2c_type}, 1, I2C_POLL_DEFAULT_TIMEOUT_US, MICROPY_HW_I2C1_SCL, MICROPY_HW_I2C1_SDA},
     #endif
     #if defined(MICROPY_HW_I2C2_SCL)
-    [1] = {{&machine_hard_i2c_type}, 1, I2C_POLL_DEFAULT_TIMEOUT_US, MICROPY_HW_I2C2_SCL, MICROPY_HW_I2C2_SDA},
+    [1] = {{&machine_hard_i2c_type}, 2, I2C_POLL_DEFAULT_TIMEOUT_US, MICROPY_HW_I2C2_SCL, MICROPY_HW_I2C2_SDA},
     #endif
     #if defined(MICROPY_HW_I2C3_SCL)
-    [2] = {{&machine_hard_i2c_type}, 1, I2C_POLL_DEFAULT_TIMEOUT_US, MICROPY_HW_I2C3_SCL, MICROPY_HW_I2C3_SDA},
+    [2] = {{&machine_hard_i2c_type}, 3, I2C_POLL_DEFAULT_TIMEOUT_US, MICROPY_HW_I2C3_SCL, MICROPY_HW_I2C3_SDA},
     #endif
     #if defined(MICROPY_HW_I2C4_SCL)
-    [3] = {{&machine_hard_i2c_type}, 1, I2C_POLL_DEFAULT_TIMEOUT_US, MICROPY_HW_I2C4_SCL, MICROPY_HW_I2C4_SDA},
+    [3] = {{&machine_hard_i2c_type}, 4, I2C_POLL_DEFAULT_TIMEOUT_US, MICROPY_HW_I2C4_SCL, MICROPY_HW_I2C4_SDA},
     #endif
 };
 

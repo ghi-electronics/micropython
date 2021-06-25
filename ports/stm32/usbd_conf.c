@@ -66,6 +66,8 @@ void HAL_PCD_MspInit(PCD_HandleTypeDef *hpcd) {
         const uint32_t otg_alt = GPIO_AF0_USB;
         #elif defined(STM32L432xx)
         const uint32_t otg_alt = GPIO_AF10_USB_FS;
+	    #elif defined(STM32L452xx)
+        const uint32_t otg_alt = GPIO_AF10_USB_FS;
         #elif defined(STM32WB)
         const uint32_t otg_alt = GPIO_AF10_USB;
         #else
@@ -116,6 +118,9 @@ void HAL_PCD_MspInit(PCD_HandleTypeDef *hpcd) {
         NVIC_SetPriority(USB_IRQn, IRQ_PRI_OTG_FS);
         HAL_NVIC_EnableIRQ(USB_IRQn);
         #elif defined(STM32L432xx)
+        NVIC_SetPriority(USB_FS_IRQn, IRQ_PRI_OTG_FS);
+        HAL_NVIC_EnableIRQ(USB_FS_IRQn);
+	    #elif defined(STM32L452xx)
         NVIC_SetPriority(USB_FS_IRQn, IRQ_PRI_OTG_FS);
         HAL_NVIC_EnableIRQ(USB_FS_IRQn);
         #elif defined(STM32WB)
