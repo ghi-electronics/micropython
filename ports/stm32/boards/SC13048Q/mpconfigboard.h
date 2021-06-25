@@ -1,4 +1,4 @@
-#define MICROPY_HW_BOARD_NAME       "GHI Electronics SITCore v0.2.1"
+#define MICROPY_HW_BOARD_NAME       "GHI Electronics SITCore v0.2.2"
 #define MICROPY_HW_MCU_NAME         "SC13048"
 
 #define MICROPY_PY_USOCKET          (0)
