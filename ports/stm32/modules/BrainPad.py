@@ -5,68 +5,66 @@ import time
 
 isPulse = BrainPadType.BrainPadType().IsPulse
 display = BrainPadDisplay.Display()
+ 
+IsPulse = isPulse
 
 
-class BrainPad:    
-    IsPulse = isPulse
+def In(obj):
+    #if (type(obj) is Analog.Analog):            
+    #    return obj.In()
     
-    
-    def In(obj):
-        #if (type(obj) is Analog.Analog):            
-        #    return obj.In()
-        
-        #if (type(obj) is Digital.Digital):            
-        #    return obj.In()
-        return obj.In()
-                
-    def Out(obj, oValue):
-        #if (type(obj) is Analog.Analog):            
-        return obj.Out(oValue)
-    
-    def Wait(sec):
-        time.sleep(sec)
+    #if (type(obj) is Digital.Digital):            
+    #    return obj.In()
+    return obj.In()
+            
+def Out(obj, oValue):
+    #if (type(obj) is Analog.Analog):            
+    return obj.Out(oValue)
 
-    def Show():
-        display.Show()
-        
-    def Print(s):
-        display.Print(s)
-        
-    def Clear():
-        display.Clear()
-        
-    def Circle(x, y, r):
-        display.Circle(x, y, r)
-        
-    def Line(x1, y1, x2, y2):
-        display.Line(x1, y1, x2, y2)
-        
-    def Rect(x, y, w, h):
-        display.Rect(x, y, w, h)
-        
-    def Point(x, y, c):
-        display.Point(x, y, c)
-        
-    def Text(s, x, y):
-        display.Text(s, x, y)
-        
-    def TextEx(s, x, y, hscale, vscale):
-        display.TextEx(s, x, y, hscale, vscale)
-        
-    def CreateImage(width, height, data, hScale, vScale, transform):
-        return display.CreateImage(width,height,data, hScale, vScale, transform)
+def Wait(sec):
+    time.sleep(sec)
+
+def Show():
+    display.Show()
     
-    def Image(img, x, y):
-        return display.CreateImage(img,x,y)
+def Print(s):
+    display.Print(s)
     
-    def Color(c):
-        return display.Color(c)
+def Clear():
+    display.Clear()
     
-    def CreateImage(width, height, data, hScale = 1, vScale = 1, transform = 0):
-        return display.CreateImage(width, height, data, hScale, vScale, transform)
+def Circle(x, y, r):
+    display.Circle(x, y, r)
     
-    def Image(image, x, y):
-        display.Image(image, x, y)
+def Line(x1, y1, x2, y2):
+    display.Line(x1, y1, x2, y2)
+    
+def Rect(x, y, w, h):
+    display.Rect(x, y, w, h)
+    
+def Point(x, y, c):
+    display.Point(x, y, c)
+    
+def Text(s, x, y):
+    display.Text(s, x, y)
+    
+def TextEx(s, x, y, hscale, vscale):
+    display.TextEx(s, x, y, hscale, vscale)
+    
+def CreateImage(width, height, data, hScale, vScale, transform):
+    return display.CreateImage(width,height,data, hScale, vScale, transform)
+
+def Image(img, x, y):
+    return display.CreateImage(img,x,y)
+
+def Color(c):
+    return display.Color(c)
+
+def CreateImage(width, height, data, hScale = 1, vScale = 1, transform = 0):
+    return display.CreateImage(width, height, data, hScale, vScale, transform)
+
+def Image(image, x, y):
+    display.Image(image, x, y)
     
     
         
