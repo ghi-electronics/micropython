@@ -2,22 +2,22 @@ import pyb
 import machine
 from machine import Pin
 import time
-import BrainPad
+from BrainPadUtil import *
 
 class Sound:
     def ConvertPinToPwmTimer(self):        
-        timer = BrainPad.BrainPad.GetPwmTimerFromPin(self.pin)
+        timer = GetPwmTimerFromPin(self.pin)
         return timer
     
     def ConvertPinToPwmChannel(self):        
-        channel = BrainPad.BrainPad.GetPwmChannelFromPin(self.pin)        
+        channel = GetPwmChannelFromPin(self.pin)        
         return channel
     
     def __init__(self, pin, playtime, volume):
         if pin == 'builtin':            
             self.pin = "PB8"
         else:
-            self.pin = BrainPad.BrainPad.GetPinFromString(pin)
+            self.pin = GetPinFromString(pin)
 
         self.playTime = playtime
         self.volume = Sound.Scale(volume, 0, 100, 0, 50)      

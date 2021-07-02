@@ -1,11 +1,11 @@
 import machine
 from machine import Pin
-import BrainPad
+from BrainPadUtil import *
 import neopixel
 
 class Neopixel:                    
     def __init__(self, pin, lednum):
-        self.pin = BrainPad.BrainPad.GetPinFromString(pin)
+        self.pin = GetPinFromString(pin)
         self.num = lednum
         self.neo = neopixel.NeoPixel(machine.Pin(self.pin), self.num)            
     

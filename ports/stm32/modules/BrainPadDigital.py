@@ -1,10 +1,10 @@
 import machine
 from machine import Pin
-import BrainPad
+from BrainPadUtil import *
 
 class Digital:                    
     def __init__(self, pin):
-        self.pin = BrainPad.BrainPad.GetPinFromString(pin)
+        self.pin = GetPinFromString(pin)
         self.pull = "pullup"
             
     def In(self):
