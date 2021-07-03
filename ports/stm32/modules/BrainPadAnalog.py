@@ -2,20 +2,20 @@ import pyb
 import machine
 from machine import ADC
 from machine import Pin
-import BrainPad
+from BrainPadUtil import *
 
 class Analog:
         
     def ConvertPinToPwmTimer(self):        
-        timer = BrainPad.BrainPad.GetPwmTimerFromPin(self.pin)
+        timer = GetPwmTimerFromPin(self.pin)
         return timer
     
     def ConvertPinToPwmChannel(self):        
-        channel = BrainPad.BrainPad.GetPwmChannelFromPin(self.pin)        
+        channel = GetPwmChannelFromPin(self.pin)        
         return channel
         
     def __init__(self, pin):
-        self.pin = BrainPad.BrainPad.GetPinFromString(pin)
+        self.pin = GetPinFromString(pin)
         
     def In(self):            
         analogIn = pyb.ADC(self.pin)

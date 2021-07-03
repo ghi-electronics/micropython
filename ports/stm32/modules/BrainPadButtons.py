@@ -2,11 +2,11 @@ import machine
 from machine import Pin
 import utime
 import time
-import BrainPad
+from BrainPadUtil import *
 
 class Buttons:                    
     def __init__(self, pin, detectPeriod):
-        self.pin = BrainPad.BrainPad.GetPinFromString(pin)
+        self.pin = GetPinFromString(pin)
         self.period = detectPeriod * 1000
         self.WasPressed = False        
         self.Btn = Pin(self.pin,Pin.IN, Pin.PULL_UP)        
@@ -26,7 +26,11 @@ class Buttons:
                 self.WasPressed = False
                 return 1
         
-        self.WasPressed = False                    
-        return self.Btn.value()        
+        self.WasPressed = False
+        
+        if (self.Btn.value() == 1):
+            return 0
+        
+        return 1
         
         

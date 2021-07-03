@@ -60,6 +60,7 @@ static const char fresh_boot_py[] =
 ;
 
 static const char fresh_main_py[] =
+	"from BrainPad import *\r\n"
     "# main.py -- put your code here!\r\n"
 ;
 
