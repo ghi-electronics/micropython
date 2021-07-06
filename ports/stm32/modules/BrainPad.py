@@ -339,7 +339,9 @@ class Controller:
             
         def In(self):            
             analogIn = pyb.ADC(self.pin)
-            return analogIn.read() * 3.3 / 4096
+            v = analogIn.read() * 3.3 / 4096
+            v_scale = int(Scale(v, 0, 1, 0, 100))
+            return v_scale
         
         def Out(self, value):        
             self.timer = pyb.Timer(self.ConvertPinToPwmTimer(), freq=1000)
