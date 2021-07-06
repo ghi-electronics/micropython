@@ -346,6 +346,7 @@ SRC_C += \
 	dac.c \
 	adc.c \
 	neopixel.c \
+	pulsefeedback.c \
 	$(wildcard $(BOARD_DIR)/*.c)
 
 SRC_CXX += \

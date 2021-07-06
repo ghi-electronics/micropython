@@ -37,9 +37,18 @@
 
 #include "genhdr/modstm_mpz.h"
 #include "neopixel.h"
+#include "pulsefeedback.h"
 #include "mphalport.h"
 
+// PulseFeedback
+STATIC mp_obj_t pulsefeedback_read_(mp_obj_t pin) {
+    uint32_t timeLength = pulsefeedback_read(pin);
+    return MP_OBJ_NEW_SMALL_INT(timeLength);
+}
 
+STATIC MP_DEFINE_CONST_FUN_OBJ_1(pulsefeedback_read_obj, pulsefeedback_read_);
+
+// neopixel
 STATIC mp_obj_t neopixel_write_(mp_obj_t pin, mp_obj_t buf, mp_obj_t timing) {
     mp_buffer_info_t bufinfo;
     mp_get_buffer_raise(buf, &bufinfo, MP_BUFFER_READ);
@@ -64,7 +73,8 @@ STATIC const mp_rom_map_elem_t stm_module_globals_table[] = {
     { MP_ROM_QSTR(MP_QSTR_rfcore_fw_version), MP_ROM_PTR(&rfcore_fw_version_obj) },
     { MP_ROM_QSTR(MP_QSTR_rfcore_sys_hci), MP_ROM_PTR(&rfcore_sys_hci_obj) },
     #endif
-   { MP_ROM_QSTR(MP_QSTR_neopixel_write), MP_ROM_PTR(&neopixel_write_obj) },
+    { MP_ROM_QSTR(MP_QSTR_neopixel_write), MP_ROM_PTR(&neopixel_write_obj) },
+	{ MP_ROM_QSTR(MP_QSTR_pulsefeedback_read), MP_ROM_PTR(&pulsefeedback_read_obj) },
 };
 
 STATIC MP_DEFINE_CONST_DICT(stm_module_globals, stm_module_globals_table);
