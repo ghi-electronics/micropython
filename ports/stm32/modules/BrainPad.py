@@ -11,6 +11,7 @@ import MC3216Controller
 from machine import ADC
 from hcsr04 import HCSR04
 import neopixel
+from stm import pulsefeedback_read
 
 from BrainPadUtil import *
 
