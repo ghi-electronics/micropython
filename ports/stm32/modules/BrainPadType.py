@@ -10,3 +10,5 @@ class BrainPadType:
         if pb15.value() == 1:
             BrainPadType.IsPulse = True
             
+        del pb15
+            

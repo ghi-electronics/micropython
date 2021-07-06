@@ -3,7 +3,7 @@ import machine
 from machine import Pin, I2C
 import time
 import ssd1306
-import BrainPadTickLedMatrix
+import TickLedMatrix
 import BasicGraphics
 import BrainPadType
 
@@ -11,7 +11,7 @@ class Display:
     
     def __init__(self):        
         if BrainPadType.BrainPadType.IsPulse == False:
-            self.tickGfx = BrainPadTickLedMatrix.TickMatrixController()            
+            self.tickGfx = TickLedMatrix.TickMatrixController()            
         else:
             self.width = 128
             self.heigh = 64
@@ -52,7 +52,12 @@ class Display:
                                    
             self.pulseLcd.show()
             
-    def Print(self, s):
+    def Print(self, v):
+        if (type(v) is str):
+            s = v
+        else:
+            s = str(v)
+            
         self.Clear()
         
         if BrainPadType.BrainPadType.IsPulse == False:

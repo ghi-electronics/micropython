@@ -1,0 +1,6 @@
+#ifndef MICROPY_INCLUDED_PULSEFEEDBACK_H
+#define MICROPY_INCLUDED_PULSEFEEDBACK_H
+
+uint32_t pulsefeedback_read(mp_obj_t pin);
+
+#endif // MICROPY_INCLUDED_NEOPIXEL_H
