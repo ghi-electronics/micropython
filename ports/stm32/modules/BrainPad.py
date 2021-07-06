@@ -80,8 +80,8 @@ def Analog(pin):
 def Digital(pin):
     return Controller.Digital(pin)
 
-def Buttons(pin, detectPeriod):
-    return Controller.Buttons(pin, detectPeriod)
+def Button(pin, detectPeriod):
+    return Controller.Button(pin, detectPeriod)
 
 def Accel(xyz):
     return Controller.Accel(xyz)
@@ -374,7 +374,7 @@ class Controller:
             else:
                 pin.low()
                 
-    class Buttons:                    
+    class Button:                    
         def __init__(self, pin, detectPeriod):
             self.pin = GetPinFromString(pin)
             self.period = detectPeriod * 1000
