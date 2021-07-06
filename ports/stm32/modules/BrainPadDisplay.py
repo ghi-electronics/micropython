@@ -11,7 +11,7 @@ class Display:
     
     def __init__(self):        
         if BrainPadType.BrainPadType.IsPulse == False:
-            self.tickGfx = BrainPadTickLedMatrix.TickMatrixController()            
+            self.tickGfx = TickLedMatrix.TickMatrixController()            
         else:
             self.width = 128
             self.heigh = 64
