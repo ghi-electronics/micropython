@@ -86,8 +86,8 @@ def Button(pin, detectPeriod):
 def Accel(xyz):
     return Controller.Accel(xyz)
 
-def DistanceSensor(triggerPin, echoPin):
-    return Controller.DistanceSensor(triggerPin, echoPin)
+def Ultrasonic(triggerPin, echoPin):
+    return Controller.Ultrasonic(triggerPin, echoPin)
 
 def I2cBus(address):
     return Controller.I2cBus(address)
@@ -403,7 +403,7 @@ class Controller:
             
             return 1
     
-    class DistanceSensor:                    
+    class Ultrasonic:                    
         def __init__(self, triggerPin, echoPin):
             self.trigger = GetPinFromString(triggerPin)
             self.echo = GetPinFromString(echoPin)
