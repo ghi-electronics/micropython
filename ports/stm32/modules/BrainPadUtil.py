@@ -60,11 +60,7 @@ def GetPinFromString(pin):
         return "PA3"
     
     if (pinlower == "p2"):
-<<<<<<< HEAD
         return "PA2"
-=======
-        return "PA5"
->>>>>>> a4930b6ae95534f8557c7bc300e77dca1f532a13
     
     if (pinlower == "p3"):
         if (IsPulse == True):

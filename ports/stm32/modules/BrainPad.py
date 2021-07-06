@@ -1,47 +1,23 @@
-<<<<<<< HEAD
 from machine import Pin,I2C
 import time
 import utime
 import pyb
 import machine
 from utime import ticks_us,ticks_diff
-=======
-from machine import Pin
-import time
->>>>>>> a4930b6ae95534f8557c7bc300e77dca1f532a13
 import BrainPadType
 import BasicGraphics
 import BrainPadDisplay
-<<<<<<< HEAD
 import MC3216Controller
 from machine import ADC
 from hcsr04 import HCSR04
 import neopixel
 from stm import pulsefeedback_read
-=======
-import BrainPadAnalog
-import BrainPadDigital
-import BrainPadServo
-import BrainPadNeopixel
-import BrainPadSound
-import BrainPadButtons
-import BrainPadAccel
-import BrainPadI2cBus
-import BrainPadDistanceSensor
-import BasicGraphics
-import BrainPadInfrared
-import BrainPadTouch
-
->>>>>>> a4930b6ae95534f8557c7bc300e77dca1f532a13
 
 from BrainPadUtil import *
 
-<<<<<<< HEAD
 IsPulse = BrainPadType.BrainPadType().IsPulse
 IsTick = (IsPulse == False)
 
-=======
->>>>>>> a4930b6ae95534f8557c7bc300e77dca1f532a13
 # main API
 def In(obj):    
     return obj.In()
@@ -53,19 +29,11 @@ def Wait(sec):
     time.sleep(sec)
     
 def Print(s):
-<<<<<<< HEAD
     Display.Print(s)
 
 # Display
 def Show():
     Display.Show()    
-=======
-    display.Print(s)
-
-# Display
-def Show():
-    display.Show()    
->>>>>>> a4930b6ae95534f8557c7bc300e77dca1f532a13
     
 def Clear():
     Display.Clear()
@@ -101,7 +69,6 @@ def CreateImage(width, height, data, hScale = 1, vScale = 1, transform = 0):
     return Display.CreateImage(width, height, data, hScale, vScale, transform)
 
 def Image(image, x, y):
-<<<<<<< HEAD
     Display.Image(image, x, y)
     
 def Touch(pin, sensitiveLevel):
@@ -577,42 +544,6 @@ class Display:
         
         
                 
-=======
-    display.Image(image, x, y)
-    
-def Touch(pin, sensitiveLevel):
-    return BrainPadTouch.Touch(pin, sensitiveLevel)
-
-def Analog(pin):
-    return BrainPadAnalog.Analog(pin)
-
-def Digital(pin):
-    return BrainPadDigital.Digital(pin)
-
-def Buttons(pin, detectPeriod):
-    return BrainPadButtons.Buttons(pin, detectPeriod)
-
-def Accel(xyz):
-    return BrainPadAccel.Accel(xyz)
-
-def DistanceSensor(triggerPin, echoPin):
-    return BrainPadDistanceSensor.DistanceSensor(triggerPin, echoPin)
-
-def I2cBus(address):
-    return BrainPadI2cBus.I2cBus(address)
-    
-def Infrared(pin):
-    return BrainPadInfrared.Infrared(pin)
-
-def Neopixel(pin, lednum):
-    return BrainPadNeopixel.Neopixel(pin, lednum)
-
-def Servo(pin):
-    return BrainPadServo.Servo(pin)
-
-def Sound(pin, playtime, volume):
-    return BrainPadSound.Sound(pin, playtime, volume)
->>>>>>> a4930b6ae95534f8557c7bc300e77dca1f532a13
 
     
 
