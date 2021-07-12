@@ -11,6 +11,7 @@ class TickMatrixController(BasicGraphics.BasicGraphics):
         self.tim = pyb.Timer(1, freq=1000)
         self.brightnessChannel = self.tim.channel(2, pyb.Timer.PWM, pin=self.pin)
         self.brightnessChannel.pulse_width_percent(50)
+        self.buffer = bytearray(25)
  
         self.ledMatrix = [
             Pin("PB14",Pin.OUT_PP),
@@ -57,15 +58,37 @@ class TickMatrixController(BasicGraphics.BasicGraphics):
         
         index = (y * 5) + x
         
-        if color != 0:
-            self.ledMatrix[index].high()
-        else:
-            self.ledMatrix[index].low()
-            
+        self.buffer[(y * 5) + x] = (color & 0xFF);
+        
+        #if color != 0:
+            #self.ledMatrix[index].high()
+        #else:
+            #self.ledMatrix[index].low()
+        
+    def Show(self):
+        for index in range(len(self.buffer)):
+            if self.buffer[index] != 0:
+                self.ledMatrix[index].high()
+            else:
+                self.ledMatrix[index].low()
+                
     def Clear(self):
-        for pin in range(len(self.ledMatrix)):
-            self.ledMatrix[pin].low()
+        self.buffer = bytearray(25)
+        #for pin in range(len(self.ledMatrix)):
+            #self.ledMatrix[pin].low()
+        
+    def DrawImage(self, img, x, y):
+        super().DrawImage(img, x, y)
             
+    def DrawCircle(self, color, x, y, radius):
+        super().DrawCircle(color, x, y, radius)
+        
+    def DrawLine(self, color, x1, y1, x2, y2):
+        super().DrawLine(color, x1, y1, x2, y2)
+        
+    def DrawRectangle(self, color, x, y, width, height):
+        super().DrawRectangle(color, x, y, width, height)
+        
     def DrawText(self, text):
         if len(text) == 1:
             super().DrawTinyCharacter(ord(text[0]), self.white, 0, 0, True)
@@ -73,6 +96,7 @@ class TickMatrixController(BasicGraphics.BasicGraphics):
             length = len(text) * 6
             for x in reversed(range(-length, 5+1)):
                 super().DrawTinyString(text, self.white, x, 0, True)
+                self.Show()
                 time.sleep(0.08)
             
         

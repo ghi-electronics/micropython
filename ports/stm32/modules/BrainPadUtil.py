@@ -51,6 +51,87 @@ def GetPwmChannelFromPin(pin):
     if (pinlower == "PB8"):
         return 1
 
+def GetPinFromObject(pin):
+    if (type(pin) is str):
+        return GetPinFromString(pin)
+    else:
+        return GetPinFromInt(pin)
+                
+def GetPinFromInt(pin):
+    if (pin == 0):
+        return "PA5"
+    
+    if (pin == 1):
+        return "PA3"
+    
+    if (pin == 2):
+        return "PA2"
+    
+    if (pin == 3):
+        if (IsPulse == True):
+            return "PA1"
+        
+    if (pin == 4):
+        if (IsPulse == True):
+            return "PA0"
+        
+    if (pin == 5):
+        if (IsPulse == True):
+            return "PA7"
+        
+    if (pin == 6):
+        if (IsPulse == True):
+            return "PA4"
+    
+    if (pin == 7):
+        if (IsPulse == True):
+            return "PB0"
+        
+    if (pin == 8):
+        if (IsPulse == True):
+            return "PA9"
+        
+    if (pin == 9):
+        if (IsPulse == True):
+            return "PB1"
+        
+    if (pin == 10):
+        if (IsPulse == True):
+            return "PA6"
+        
+    if (pin == 11):
+        if (IsPulse == True):
+            return "PB6"
+        
+    if (pin == 12):
+        if (IsPulse == True):
+            return "PA10"
+        else:
+            return "PA5"
+        
+    if (pin == 13):
+        return "PB3"
+    
+    if (pin == 14):
+        return "PB4"
+    
+    if (pin == 15):
+        return "PB5"
+    
+    if (pin == 16):
+        if (IsPulse == True):
+            return "PB12"
+        else:
+            return "PA3"
+        
+    if (pin == 19):
+        return "PB10"
+    
+    if (pin == 20):
+        return "PB11"                    
+     
+    return "-1"    
+    
 def GetPinFromString(pin):
     pinlower = pin.lower()
     if (pinlower == "p0"):
