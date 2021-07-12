@@ -38,8 +38,7 @@ class Display:
             self.tickGfx.Clear()
         else:
             self.pulseLcd.fill(0)
-            self.pulseGfx.Clear()
-            self.Show()
+            self.pulseGfx.Clear()            
             
     def Show(self):
         if BrainPadType.BrainPadType.IsPulse == False:
