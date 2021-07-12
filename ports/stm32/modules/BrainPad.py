@@ -377,15 +377,7 @@ class Controller:
             self.pull = "pullup"
                 
         def In(self):
-            if (self.pull == "pullup"):
-                pin = Pin(self.pin, Pin.IN, Pin.PULL_UP)
-                return pin.value()
-            
-            if (self.pull == "pulldown"):
-                pin = Pin(self.pin, Pin.IN, Pin.PULL_DOWN)
-                return pin.value()
-            
-            pin = Pin(self.pin, Pin.IN)
+            pin = Pin(self.pin, Pin.IN, Pin.PULL_UP)                                    
             return pin.value()
             
         
