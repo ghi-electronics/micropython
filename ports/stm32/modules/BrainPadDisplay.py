@@ -9,7 +9,9 @@ import BrainPadType
 
 class Display:
     
-    def __init__(self):        
+    def __init__(self):
+        self.color = 1
+
         if BrainPadType.BrainPadType.IsPulse == False:
             self.tickGfx = TickLedMatrix.TickMatrixController()            
         else:
@@ -18,7 +20,6 @@ class Display:
             self.pulseGfx = BasicGraphics.BasicGraphics(self.width, self.heigh)
             self.InitPulseDisplay()
             self.messages = ["" for x in range(8)]
-            self.color = 1            
                         
     def InitPulseDisplay(self):
         self.lcdReset = Pin("PB2",Pin.OUT_PP)
@@ -42,7 +43,7 @@ class Display:
             
     def Show(self):
         if BrainPadType.BrainPadType.IsPulse == False:
-             return
+             self.tickGfx.Show()
         else:
             for y in range(self.heigh):
                 for x in range (self.width):
@@ -76,19 +77,19 @@ class Display:
     
     def Circle(self, x, y, radius):
         if BrainPadType.BrainPadType.IsPulse == False:
-            return
+            self.tickGfx.DrawCircle(self.color, x, y, radius)
         else:
             self.pulseGfx.DrawCircle(self.color, x, y, radius)
                 
     def Line(self, x1, y1, x2, y2):
         if BrainPadType.BrainPadType.IsPulse == False:
-            return
+            self.tickGfx.DrawLine(self.color, x1, y1, x2, y2)
         else:
             self.pulseGfx.DrawLine(self.color, x1, y1, x2, y2)
             
     def Rect(self, x, y, w, h):
         if BrainPadType.BrainPadType.IsPulse == False:
-            return
+            self.tickGfx.DrawRectangle(self.color, x, y, w, h)
         else:
             self.pulseGfx.DrawRectangle(self.color, x, y, w, h)
             
@@ -100,15 +101,15 @@ class Display:
             
     def Text(self, s, x, y):
         if BrainPadType.BrainPadType.IsPulse == False:
-            return
+            self.tickGfx.DrawText(s)
         else:
             self.pulseGfx.DrawString(s, self.color, x, y)
             
     def TextEx(self, s, x, y, xscale, yscale):
         if BrainPadType.BrainPadType.IsPulse == False:
-            return
-        else:
-             self.pulseGfx.DrawString(s, self.color, x, y, xscale, yscale)
+            self.tickGfx.DrawText(s)
+        else:            
+            self.pulseGfx.DrawString(s, self.color, x, y, xscale, yscale)
              
     def Color(self, c):
         self.color = c
@@ -118,5 +119,8 @@ class Display:
         return self.image
     
     def Image(self, image, x, y):
-        self.pulseGfx.DrawImage(image, x, y)
+        if BrainPadType.BrainPadType.IsPulse == False:
+            self.tickGfx.DrawImage(image, x, y)
+        else:
+            self.pulseGfx.DrawImage(image, x, y)
                             
