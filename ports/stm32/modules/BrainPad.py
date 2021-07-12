@@ -67,6 +67,9 @@ def Line(x1, y1, x2, y2):
 def Rect(x, y, w, h):
     Display.Rect(x, y, w, h)
     
+def FillRect(x, y, w, h):
+    Display.FillRect(x, y, w, h)
+    
 def Point(x, y, c):
     Display.Point(x, y, c)
     
@@ -537,6 +540,9 @@ class Display:
         
     def Rect(x, y, w, h):
         Display.display.Rect(x, y, w, h)
+        
+    def FillRect(x, y, w, h):
+        Display.display.FillRect(x, y, w, h)
         
     def Point(x, y, c):
         Display.display.Point(x, y, c)

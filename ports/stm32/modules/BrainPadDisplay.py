@@ -93,6 +93,15 @@ class Display:
         else:
             self.pulseGfx.DrawRectangle(self.color, x, y, w, h)
             
+    def FillRect(self, x, y, w, h):
+        w = w + x
+        h = h + y
+        
+        for h1 in range(y,h):
+            for w1 in range(x,w):
+                self.Point(w1, h1, self.color)
+            
+            
     def Point(self, x, y, c):
         if BrainPadType.BrainPadType.IsPulse == False:
             self.tickGfx.SetPixel(x, y, c)
