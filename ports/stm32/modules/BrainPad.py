@@ -15,6 +15,26 @@ from stm import pulsefeedback_read
 
 from BrainPadUtil import *
 
+P0 = const(0)
+P1 = const(1)
+P2 = const(2)
+P3 = const(3)
+P4 = const(4)
+P5 = const(5)
+P6 = const(6)
+P7 = const(7)
+P8 = const(8)
+P9 = const(9)
+P10 = const(10)
+P11 = const(11)
+P12 = const(12)
+P13 = const(13)
+P14 = const(14)
+P15 = const(15)
+P16 = const(16)
+P19 = const(19)
+P20 = const(20)
+
 IsPulse = BrainPadType.BrainPadType().IsPulse
 IsTick = (IsPulse == False)
 
@@ -118,7 +138,7 @@ class Controller:
             if pin == 'builtin':            
                 self.pin = "PB8"
             else:
-                self.pin = GetPinFromString(pin)
+                self.pin = GetPinFromObject(pin)
 
             self.playTime = playtime
             self.volume = Scale(volume, 0, 100, 0, 50)      
@@ -186,12 +206,12 @@ class Controller:
         
     class Touch:
         def __init__(self, pin, sensitiveLevel):
-            self.pin =  Pin(GetPinFromString(pin))
+            self.pin =  Pin(GetPinFromObject(pin))
             self.sensitive = 100 - sensitiveLevel
             
         def In(self):
             t = pulsefeedback_read(self.pin)
-            scale =  Scale(t, 8, 14, 0, 100)
+            scale =  Scale(t, 6, 14, 0, 100)
             
             if (scale >= self.sensitive):
                 return 1
@@ -220,7 +240,7 @@ class Controller:
         IRKey = [10, 12, 11, 0xFF, 14, 16, 15, 0xFF, 17, 13, 18, 0xFF, 19, 0, 20, 0xFF, 1, 2, 3, 0xFF, 4, 5, 6, 0xFF, 7, 8, 9]
         
         def __init__(self, pin):        
-            self.pin = Pin(GetPinFromString(pin),Pin.IN)
+            self.pin = Pin(GetPinFromObject(pin),Pin.IN)
             self.pin.irq(trigger=Pin.IRQ_FALLING | Pin.IRQ_RISING, handler=self.callback)
             self.last_us = 0
             self.us = 0
@@ -335,7 +355,7 @@ class Controller:
             return channel
             
         def __init__(self, pin):
-            self.pin = GetPinFromString(pin)
+            self.pin = GetPinFromObject(pin)
             
         def In(self):            
             analogIn = pyb.ADC(self.pin)
@@ -350,7 +370,7 @@ class Controller:
             
     class Digital:                    
         def __init__(self, pin):
-            self.pin = GetPinFromString(pin)
+            self.pin = GetPinFromObject(pin)
             self.pull = "pullup"
                 
         def In(self):
@@ -376,7 +396,7 @@ class Controller:
                 
     class Button:                    
         def __init__(self, pin, detectPeriod):
-            self.pin = GetPinFromString(pin)
+            self.pin = GetPinFromObject(pin)
             self.period = detectPeriod * 1000
             self.WasPressed = False        
             self.Btn = Pin(self.pin,Pin.IN, Pin.PULL_UP)        
@@ -405,8 +425,8 @@ class Controller:
     
     class Ultrasonic:                    
         def __init__(self, triggerPin, echoPin):
-            self.trigger = GetPinFromString(triggerPin)
-            self.echo = GetPinFromString(echoPin)
+            self.trigger = GetPinFromObject(triggerPin)
+            self.echo = GetPinFromObject(echoPin)
             self.sensor = HCSR04(self.trigger, self.echo)
                 
         def In(self):
@@ -415,7 +435,7 @@ class Controller:
         
     class Neopixel:                    
         def __init__(self, pin, lednum):
-            self.pin = GetPinFromString(pin)
+            self.pin = GetPinFromObject(pin)
             self.num = lednum
             self.neo = neopixel.NeoPixel(machine.Pin(self.pin), self.num)            
         
@@ -445,7 +465,7 @@ class Controller:
             return channel
         
         def __init__(self, pin):
-            self.pin = GetPinFromString(pin)
+            self.pin = GetPinFromObject(pin)
             self.ConfigurePulseParameters(0.5, 2.4)
             self.ConfigureAsPositional(False)
             self.EnsureFrequency()
