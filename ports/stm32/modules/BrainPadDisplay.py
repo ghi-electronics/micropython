@@ -124,6 +124,10 @@ class Display:
         self.color = c
         
     def CreateImage(self, width, height, data, hScale = 1, vScale = 1, transform = BasicGraphics.Image.NoTransform):
+        if BrainPadType.BrainPadType.IsPulse == False:
+            hScale = 1
+            vScale = 1
+
         self.image = BasicGraphics.Image(data, width, height, hScale, vScale, transform)
         return self.image
     
