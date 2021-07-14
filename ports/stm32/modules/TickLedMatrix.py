@@ -47,8 +47,8 @@ class TickMatrixController(BasicGraphics.BasicGraphics):
         for pin in range(len(self.ledMatrix)):
             self.ledMatrix[pin].low()
     
-    def SetBrightness(self, brightness):
-        self.brightnessChannel.pulse_width_percent(brightness)
+    def Brightness(self, bright):
+        self.brightnessChannel.pulse_width_percent(bright)
         
     def SetPixel(self, x, y, color):
         if (x < 0 or x > 4):

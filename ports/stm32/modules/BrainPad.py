@@ -52,6 +52,9 @@ def Print(s):
     Display.Print(s)
 
 # Display
+def Brightness(bright):
+    Display.Brightness(bright)
+    
 def Show():
     Display.Show()    
     
@@ -521,6 +524,9 @@ class Display:
     
     def Print(s):
         Display.display.Print(s)
+
+    def Brightness(bright):
+        Display.display.Brightness(bright)
 
     def Show():
         Display.display.Show()    
