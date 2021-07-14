@@ -32,7 +32,7 @@ class Display:
         
     def Brightness(self, bright):
         if BrainPadType.BrainPadType.IsPulse == False:
-            self.tickGfx.SetBrightness(bright)
+            self.tickGfx.Brightness(bright)
         
     def Clear(self):
         if BrainPadType.BrainPadType.IsPulse == False:
