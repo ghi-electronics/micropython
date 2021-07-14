@@ -52,6 +52,9 @@ def Print(s):
     Display.Print(s)
 
 # Display
+def Brightness(bright):
+    Display.Brightness(bright)
+    
 def Show():
     Display.Show()    
     
@@ -109,8 +112,8 @@ def Button(pin, detectPeriod):
 def Accel(xyz):
     return Controller.Accel(xyz)
 
-def Ultrasonic(triggerPin, echoPin):
-    return Controller.Ultrasonic(triggerPin, echoPin)
+def Distance(triggerPin, echoPin):
+    return Controller.Distance(triggerPin, echoPin)
 
 def I2cBus(address):
     return Controller.I2cBus(address)
@@ -138,7 +141,7 @@ class Controller:
             return channel
         
         def __init__(self, pin, playtime, volume):
-            if pin == 'builtin':            
+            if pin == 'buzzer' or pin == 'BUZZER':            
                 self.pin = "PB8"
             else:
                 self.pin = GetPinFromObject(pin)
@@ -373,8 +376,10 @@ class Controller:
             
     class Digital:                    
         def __init__(self, pin):
-            self.pin = GetPinFromObject(pin)
-            self.pull = "pullup"
+            if pin == "led" or pin == "LED":
+                self.pin = "PA8"
+            else:                
+                self.pin = GetPinFromObject(pin)            
                 
         def In(self):
             pin = Pin(self.pin, Pin.IN, Pin.PULL_UP)                                    
@@ -418,7 +423,7 @@ class Controller:
             
             return 1
     
-    class Ultrasonic:                    
+    class Distance:                    
         def __init__(self, triggerPin, echoPin):
             self.trigger = GetPinFromObject(triggerPin)
             self.echo = GetPinFromObject(echoPin)
@@ -517,6 +522,9 @@ class Display:
     
     def Print(s):
         Display.display.Print(s)
+
+    def Brightness(bright):
+        Display.display.Brightness(bright)
 
     def Show():
         Display.display.Show()    

@@ -30,9 +30,9 @@ class Display:
         i2c = I2C(2)
         self.pulseLcd = ssd1306.SSD1306_I2C(self.width, self.heigh, i2c)
         
-    def SetBrightness(self, brightness):
+    def Brightness(self, bright):
         if BrainPadType.BrainPadType.IsPulse == False:
-            self.tickGfx.SetBrightness(brightness)
+            self.tickGfx.Brightness(bright)
         
     def Clear(self):
         if BrainPadType.BrainPadType.IsPulse == False:
@@ -108,13 +108,23 @@ class Display:
         else:
             self.pulseGfx.SetPixel(x, y, c)
             
-    def Text(self, s, x, y):
+    def Text(self, v, x, y):
+        if (type(v) is str):
+            s = v
+        else:
+            s = str(v)
+            
         if BrainPadType.BrainPadType.IsPulse == False:
             self.tickGfx.DrawText(s)
         else:
             self.pulseGfx.DrawString(s, self.color, x, y)
             
-    def TextEx(self, s, x, y, xscale, yscale):
+    def TextEx(self, v, x, y, xscale, yscale):
+        if (type(v) is str):
+            s = v
+        else:
+            s = str(v)
+
         if BrainPadType.BrainPadType.IsPulse == False:
             self.tickGfx.DrawText(s)
         else:            
