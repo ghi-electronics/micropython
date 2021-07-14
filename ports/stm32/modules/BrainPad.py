@@ -373,8 +373,12 @@ class Controller:
             
     class Digital:                    
         def __init__(self, pin):
-            self.pin = GetPinFromObject(pin)
-            self.pull = "pullup"
+            if (type(pin) is str):
+                pin = pin.lower()
+                if pin == "led":
+                    self.pin = "PA8"
+            else:                
+                self.pin = GetPinFromObject(pin)            
                 
         def In(self):
             pin = Pin(self.pin, Pin.IN, Pin.PULL_UP)                                    
