@@ -141,7 +141,7 @@ class Controller:
             return channel
         
         def __init__(self, pin, playtime, volume):
-            if pin == 'builtin':            
+            if pin == 'buzzer' or pin == 'BUZZER':            
                 self.pin = "PB8"
             else:
                 self.pin = GetPinFromObject(pin)
@@ -376,10 +376,8 @@ class Controller:
             
     class Digital:                    
         def __init__(self, pin):
-            if (type(pin) is str):
-                pin = pin.lower()
-                if pin == "led":
-                    self.pin = "PA8"
+            if pin == "led" or pin == "LED":
+                self.pin = "PA8"
             else:                
                 self.pin = GetPinFromObject(pin)            
                 
