@@ -361,7 +361,10 @@ class Controller:
             return channel
             
         def __init__(self, pin):
-            self.pin = GetPinFromObject(pin)
+            if pin == "led" or pin == "LED":
+                self.pin = "PA8"
+            else:                
+                self.pin = GetPinFromObject(pin)
             
         def In(self):            
             analogIn = pyb.ADC(self.pin)
