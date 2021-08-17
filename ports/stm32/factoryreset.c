@@ -61,7 +61,16 @@ static const char fresh_boot_py[] =
 
 static const char fresh_main_py[] =
 	"from BrainPad import *\r\n"
-    "# main.py -- put your code here!\r\n"
+	"if (IsPulse == True):\r\n"
+	"    Print('     MicroPython')\r\n"
+	"    Print('')\r\n"
+	"    Print('       Visit')\r\n"
+	"    Print('  www.Brainpad.com')\r\n"
+	"    Print('   to get started.')\r\n"
+	"    Print('')\r\n"
+	"else:\r\n"
+	"    Print('PYTHON')\r\n"
+	"# main.py -- put your code here!\r\n"
 ;
 
 #if MICROPY_HW_ENABLE_USB

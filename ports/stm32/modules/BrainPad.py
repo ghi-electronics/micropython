@@ -194,21 +194,33 @@ class Controller:
             
         def GetX(self):
             if BrainPadType.BrainPadType.IsPulse == True:
-                x = self.accel.GetX()             
-                return (x + 128) / 256
+                x = self.accel.GetX()
+                if (x > 127):
+                    x = x - 256
+                                    
+                d = x * 1.56
+                return int(d)
             return 0
         
         def GetY(self):
             if BrainPadType.BrainPadType.IsPulse == True:
                 y = self.accel.GetY()             
-                return (y + 128) / 256
-            return 0
+                if (y > 127):
+                    y = y - 256
+                    
+                d = y * 1.56
+                return int(d)
+            return 0    
         
         def GetZ(self):
             if BrainPadType.BrainPadType.IsPulse == True:
                 z = self.accel.GetZ()             
-                return (z + 128) / 256
-            return 0
+                if (z > 127):
+                    z = z - 256
+                    
+                d = z * 1.56
+                return int(d)
+            return 0 
         
     class Touch:
         def __init__(self, pin, sensitiveLevel):
