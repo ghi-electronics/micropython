@@ -43,13 +43,9 @@ class Display:
             
     def Show(self):
         if BrainPadType.BrainPadType.IsPulse == False:
-             self.tickGfx.Show()
-        else:
-            for y in range(self.heigh):
-                for x in range (self.width):
-                    index = int(y * self.width + x)
-                    self.pulseLcd.pixel(x, y, self.pulseGfx.buffer[index])
-                                   
+            self.tickGfx.Show()
+        else:                                              
+            self.pulseLcd.blit(self.pulseGfx.buffer1bpp, 0, 0, 0)
             self.pulseLcd.show()
             
     def Print(self, v):

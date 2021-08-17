@@ -1,3 +1,4 @@
+import framebuf
 
 mono5x5 = [
     0x00, 0x00, 0x00, 0x00, 0x00,# Space	0x20 */
@@ -201,27 +202,42 @@ class BasicGraphics:
         self.colorFormat = 1
         self.width = width
         self.height = height
-         
-        self.buffer = bytearray(int(width * height))
-        
-        
-            
+                 
+        self.buffer1bpp = framebuf.FrameBuffer(bytearray(int(width * height / 8)), width, height, framebuf.MONO_VLSB)
 
-    def Clear(self):
-        self.buffer = bytearray(int(self.width * self.height))
 
-    def SetPixel(self, x, y, color):
-        index = int(y *  self.width + x)
-        self.buffer[index] = color
+    def Clear(self):        
+        self.buffer1bpp.fill(0)
+
+    def SetPixel(self, x, y, color):        
+        self.buffer1bpp.pixel(x,y,color)
+        
+    def SetPixelScale(self, x, y, hScale, vScale, color):
+        x = x*hScale;
+        y = y*vScale;
+        
+        for ix in range(hScale):
+            for iy in range(vScale):
+                self.SetPixel(x + ix, y + iy, color)
+        
             
     def DrawCharacter(self, character, color, x, y, hScale, vScale):
         index = 5 * (character - 32)
-        for horizontalFontSize in range(5):
-            for hs in range(hScale):
+        
+        if (hScale != 1 or vScale != 1):
+            for horizontalFontSize in range(5):
+                sx = x + horizontalFontSize
+                fontRow = mono8x5[index + horizontalFontSize];
                 for verticleFontSize in range(8):
-                    for vs in range (vScale):                                                
-                        if (mono8x5[index + horizontalFontSize] & (1 << verticleFontSize)) != 0:
-                            self.SetPixel(x + (horizontalFontSize * hScale) + hs, y + (verticleFontSize * vScale) + vs, color)
+                    if ((fontRow & (1 << verticleFontSize)) != 0):
+                        self.SetPixelScale(sx, y + verticleFontSize, hScale, vScale, color)
+        else:
+            for horizontalFontSize in range(5):
+                sx = x + horizontalFontSize
+                fontRow = mono8x5[index + horizontalFontSize]
+                for verticleFontSize in range(8):
+                    if ((fontRow & (1 << verticleFontSize)) != 0):
+                        self.SetPixel(sx, y + verticleFontSize, color)
                             
     def DrawTinyCharacter(self, character, color, x, y, clear):
         index = 5 * (character - 32)
