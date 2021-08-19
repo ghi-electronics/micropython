@@ -35,6 +35,15 @@ P16 = const(16)
 P19 = const(19)
 P20 = const(20)
 
+LED = const(21)
+BUZZER = const(22)
+A = const(23)
+B = const(24)
+
+X = const(25)
+Y = const(26)
+Z = const(27)
+
 IsPulse = BrainPadType.BrainPadType().IsPulse
 IsTick = (IsPulse == False)
 
@@ -141,10 +150,7 @@ class Controller:
             return channel
         
         def __init__(self, pin, playtime, volume):
-            if pin == 'buzzer' or pin == 'BUZZER':            
-                self.pin = "PB8"
-            else:
-                self.pin = GetPinFromObject(pin)
+            self.pin = GetPinFromObject(pin)
 
             self.playTime = playtime
             self.volume = Scale(volume, 0, 100, 0, 50)      
@@ -164,19 +170,17 @@ class Controller:
             self.doY = False
             self.doZ = False
             
-            xyz = xyz.lower()
-            
-            if xyz == 'x':
+            if xyz == X:
                 self.doX = True
                 
-            if xyz == 'y':
+            if xyz == Y:
                 self.doY = True
                 
-            if xyz == 'z':
+            if xyz == Z:
                 self.doZ = True
                 
             if (self.doX == False and self.doY == False and self.doZ == False):
-                raise Exception("Must be x or y or z!")    
+                raise Exception("Must be X or Y or Z!")    
                 
             if BrainPadType.BrainPadType.IsPulse == True:
                 self.i2c = I2C(2, freq=100000)
@@ -373,10 +377,7 @@ class Controller:
             return channel
             
         def __init__(self, pin):
-            if pin == "led" or pin == "LED":
-                self.pin = "PA8"
-            else:                
-                self.pin = GetPinFromObject(pin)
+            self.pin = GetPinFromObject(pin)
             
         def In(self):            
             analogIn = pyb.ADC(self.pin)
@@ -391,10 +392,7 @@ class Controller:
             
     class Digital:                    
         def __init__(self, pin):
-            if pin == "led" or pin == "LED":
-                self.pin = "PA8"
-            else:                
-                self.pin = GetPinFromObject(pin)            
+            self.pin = GetPinFromObject(pin)            
                 
         def In(self):
             pin = Pin(self.pin, Pin.IN, Pin.PULL_UP)                                    
