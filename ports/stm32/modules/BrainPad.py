@@ -54,6 +54,9 @@ def In(obj):
 def Out(obj, oValue):    
     return obj.Out(oValue)
 
+def OutIn(obj, write, result):
+    return obj.OutIn(write, result)
+
 def Wait(sec):
     time.sleep(sec)
     
@@ -530,6 +533,9 @@ class Controller:
         def Out(self, buff):                                
             self.i2cControl.writeto(self.SlaveAddress, buff)
             
+        def OutIn(self, write, result):
+            self.i2cControl.readfrom_mem_into(self.SlaveAddress, write[0], result)
+                        
 class Display:        
     display = BrainPadDisplay.Display()
     
