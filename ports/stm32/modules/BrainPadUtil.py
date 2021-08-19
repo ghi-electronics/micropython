@@ -2,6 +2,62 @@ import BrainPadType
 
 IsPulse = BrainPadType.BrainPadType().IsPulse
 
+PinMapPulse = [
+"PA5", #P0
+"PA3", #P1
+"PA2", #P2
+"PA1", #P3
+"PA0", #P4
+"PA7", #P5
+"PA4", #P6
+"PB0", #P7
+"PA9", #P8
+"PB1", #P9
+"PA6", #P10
+"PB6", #P11
+"PA10", #P12
+"PB3", #P13
+"PB4", #P14
+"PB5", #P15
+"PB12", #P16
+"-1" , #P17
+"-1" , #P18
+"PB10", #P19
+"PB11", #P20
+"PA8", #LED
+"PB8", #BUZZER
+"PC13", #A
+"PB7" #B
+]
+
+PinMapTick = [
+"PA5", #P0
+"PA3", #P1
+"PA2", #P2
+"-1", #P3
+"-1", #P4
+"-1", #P5
+"-1", #P6
+"-1", #P7
+"-1", #P8
+"-1", #P9
+"-1", #P10
+"-1", #P11
+"PA5", #P12
+"PB3", #P13
+"PB4", #P14
+"PB5", #P15
+"PA3", #P16
+"-1", #P17
+"-1", #P18
+"PB10", #P19
+"PB11", #P20
+"PA8", #LED
+"PB8", #BUZZER
+"PC13", #A
+"PB7" #B    
+]   
+
 
 # Util    
 def GetPwmTimerFromPin(pin):
@@ -57,162 +113,13 @@ def GetPinFromObject(pin):
     else:
         return GetPinFromInt(pin)
                 
-def GetPinFromInt(pin):
-    if (pin == 0):
-        return "PA5"
-    
-    if (pin == 1):
-        return "PA3"
-    
-    if (pin == 2):
-        return "PA2"
-    
-    if (pin == 3):
-        if (IsPulse == True):
-            return "PA1"
-        
-    if (pin == 4):
-        if (IsPulse == True):
-            return "PA0"
-        
-    if (pin == 5):
-        if (IsPulse == True):
-            return "PA7"
-        
-    if (pin == 6):
-        if (IsPulse == True):
-            return "PA4"
-    
-    if (pin == 7):
-        if (IsPulse == True):
-            return "PB0"
-        
-    if (pin == 8):
-        if (IsPulse == True):
-            return "PA9"
-        
-    if (pin == 9):
-        if (IsPulse == True):
-            return "PB1"
-        
-    if (pin == 10):
-        if (IsPulse == True):
-            return "PA6"
-        
-    if (pin == 11):
-        if (IsPulse == True):
-            return "PB6"
-        
-    if (pin == 12):
-        if (IsPulse == True):
-            return "PA10"
-        else:
-            return "PA5"
-        
-    if (pin == 13):
-        return "PB3"
-    
-    if (pin == 14):
-        return "PB4"
-    
-    if (pin == 15):
-        return "PB5"
-    
-    if (pin == 16):
-        if (IsPulse == True):
-            return "PB12"
-        else:
-            return "PA3"
-        
-    if (pin == 19):
-        return "PB10"
-    
-    if (pin == 20):
-        return "PB11"                    
-     
-    return "-1"    
+def GetPinFromInt(pin):        
+    if (IsPulse == True):
+        return PinMapPulse[pin]
+
+    return PinMapTick[pin]
     
 def GetPinFromString(pin):
-    pinlower = pin.lower()
-    if (pinlower == "p0"):
-        return "PA5"
-    
-    if (pinlower == "p1"):
-        return "PA3"
-    
-    if (pinlower == "p2"):
-        return "PA2"
-    
-    if (pinlower == "p3"):
-        if (IsPulse == True):
-            return "PA1"
-        
-    if (pinlower == "p4"):
-        if (IsPulse == True):
-            return "PA0"
-        
-    if (pinlower == "p5"):
-        if (IsPulse == True):
-            return "PA7"
-        
-    if (pinlower == "p6"):
-        if (IsPulse == True):
-            return "PA4"
-    
-    if (pinlower == "p7"):
-        if (IsPulse == True):
-            return "PB0"
-        
-    if (pinlower == "p8"):
-        if (IsPulse == True):
-            return "PA9"
-        
-    if (pinlower == "p9"):
-        if (IsPulse == True):
-            return "PB1"
-        
-    if (pinlower == "p10"):
-        if (IsPulse == True):
-            return "PA6"
-        
-    if (pinlower == "p11"):
-        if (IsPulse == True):
-            return "PB6"
-        
-    if (pinlower == "p12"):
-        if (IsPulse == True):
-            return "PA10"
-        else:
-            return "PA5"
-        
-    if (pinlower == "p13"):
-        return "PB3"
-    
-    if (pinlower == "p14"):
-        return "PB4"
-    
-    if (pinlower == "p15"):
-        return "PB5"
-    
-    if (pinlower == "p16"):
-        if (IsPulse == True):
-            return "PB12"
-        else:
-            return "PA3"
-        
-    if (pinlower == "p19"):
-        return "PB10"
-    
-    if (pinlower == "p20"):
-        return "PB11"
-    
-    if (pinlower == "a"):
-        return "PC13"
-    
-    if (pinlower == "b"):
-        return "PB7"
-            
-     
     return "-1"
     
 def Scale(value, originalMin, originalMax, scaleMin, scaleMax):

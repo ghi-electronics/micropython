@@ -261,13 +261,14 @@ class BasicGraphics:
                         
     
     def DrawString(self, text, color, x, y, hScale = 1, vScale=1):
+        originalX = x
         for i in range(len(text)):
             if ord(text[i]) >=32 :
                 self.DrawCharacter(ord(text[i]), color, x, y, hScale, vScale)
-                x += 6*hScale
+                x += 6
             else:
                 if text[i] == '\n':
-                    y += (9 * vScale)
+                    y += 9
                     x = originalX;
                 else:
                     if text[i] == '\r':
@@ -366,6 +367,7 @@ class BasicGraphics:
         for vsize in range(img.Height):
             for hsize in range(img.Width):
                 self.SetPixel(x + hsize, y + vsize, img.Data[index]);
+                index = index + 1                
                 
            
     def CreateImage(self, data, width, height, hScale, vScale, transform):        
@@ -394,9 +396,9 @@ class Image:
         
         for i in range(len(data)):
             if text[i] == ' ':
-                data[i] = 0
+                data[i] = 0                
             else:
-                data[i] = ord(text[i])
+                data[i] = 1
                 
         self.CreateImage(data, width, height, hScale, vScale, transform)
     
