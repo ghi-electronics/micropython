@@ -367,6 +367,7 @@ class BasicGraphics:
         for vsize in range(img.Height):
             for hsize in range(img.Width):
                 self.SetPixel(x + hsize, y + vsize, img.Data[index]);
+                index = index + 1                
                 
            
     def CreateImage(self, data, width, height, hScale, vScale, transform):        
@@ -395,9 +396,9 @@ class Image:
         
         for i in range(len(data)):
             if text[i] == ' ':
-                data[i] = 0
+                data[i] = 0                
             else:
-                data[i] = ord(text[i])
+                data[i] = 1
                 
         self.CreateImage(data, width, height, hScale, vScale, transform)
     
