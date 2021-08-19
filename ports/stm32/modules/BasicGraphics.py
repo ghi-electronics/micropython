@@ -261,13 +261,14 @@ class BasicGraphics:
                         
     
     def DrawString(self, text, color, x, y, hScale = 1, vScale=1):
+        originalX = x
         for i in range(len(text)):
             if ord(text[i]) >=32 :
                 self.DrawCharacter(ord(text[i]), color, x, y, hScale, vScale)
-                x += 6*hScale
+                x += 6
             else:
                 if text[i] == '\n':
-                    y += (9 * vScale)
+                    y += 9
                     x = originalX;
                 else:
                     if text[i] == '\r':
