@@ -36,13 +36,14 @@ P19 = const(19)
 P20 = const(20)
 
 LED = const(21)
-BUZZER = const(22)
-A = const(23)
-B = const(24)
+Led = const(21)
+Buzzer = const(22)
+ButtonA = const(23)
+ButtonB = const(24)
 
-X = const(25)
-Y = const(26)
-Z = const(27)
+AccelX = const(25)
+AccelY = const(26)
+AccelZ = const(27)
 
 IsPulse = BrainPadType.BrainPadType().IsPulse
 IsTick = (IsPulse == False)
@@ -173,13 +174,13 @@ class Controller:
             self.doY = False
             self.doZ = False
             
-            if xyz == X:
+            if xyz == AccelX:
                 self.doX = True
                 
-            if xyz == Y:
+            if xyz == AccelY:
                 self.doY = True
                 
-            if xyz == Z:
+            if xyz == AccelZ:
                 self.doZ = True
                 
             if (self.doX == False and self.doY == False and self.doZ == False):
