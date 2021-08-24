@@ -377,12 +377,13 @@ class BasicGraphics:
     
     
 class Image:
-    NoTransform = 0    
-    FlipVertical = 1
-    Rotate90 = 2
-    Rotate180 = 3
-    Rotate270 = 4
-    FlipHorizontal = 5
+    NoTransform = 0
+    FlipHorizontal = 1
+    FlipVertical = 2
+    Rotate90 = 3
+    Rotate180 = 4
+    Rotate270 = 5
+    
 
     def __init__(self, data, width, height, hScale = 1, vScale = 1, transform = NoTransform):
         if (type(data) is str):
