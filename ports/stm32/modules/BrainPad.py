@@ -51,7 +51,8 @@ Blue = const(0x0000FF)
 White = const(0xFFFFFF)
 Yellow = const(0xFFFF00)
 Black = const(0x000000)
-Purple = const(0x800080)
+Magenta = const(0xFF00FF)
+Cyan = const(0x00FFFF)
 
 IsPulse = BrainPadType.BrainPadType().IsPulse
 IsTick = (IsPulse == False)
