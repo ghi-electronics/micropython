@@ -86,11 +86,11 @@ def GroundSensor():
 def DistanceSensor():
     return In(distance)
 
-def InvertLeftMotor(invert):
-    Invert.invertLeftMotor = invert
+def InvertLeftMotor():
+    Invert.invertLeftMotor = True
     
-def InvertRightMotor(invert):
-    Invert.invertRightMotor = invert
+def InvertRightMotor():
+    Invert.invertRightMotor = True
     
         
         
