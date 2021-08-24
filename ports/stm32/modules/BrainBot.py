@@ -68,8 +68,9 @@ def Headlight(color):
     
     Out(i2cBus, data4)
     
-def Taillight(color):
-    Out(neopixel, color)
+def Taillight(lelfColor, rightColor):
+    data2 = [lelfColor, rightColor]
+    Out(neopixel, data2)
     
 def GroundSensor():
     if (In(leftLineSensor) > 0 and In(rightLineSensor) > 0):
