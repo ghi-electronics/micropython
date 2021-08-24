@@ -394,8 +394,8 @@ class Controller:
             
         def In(self):            
             analogIn = pyb.ADC(self.pin)
-            v = analogIn.read() * 3.3 / 4096
-            v_scale = int(Scale(v, 0, 1, 0, 100))
+            v = analogIn.read()
+            v_scale = int(Scale(v, 0, 4096, 0, 100))
             return v_scale
         
         def Out(self, value):        
