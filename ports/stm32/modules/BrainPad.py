@@ -45,6 +45,15 @@ AccelX = const(25)
 AccelY = const(26)
 AccelZ = const(27)
 
+Red = const(0xFF0000)
+Green = const(0x00FF00)
+Blue = const(0x0000FF)
+White = const(0xFFFFFF)
+Yellow = const(0xFFFF00)
+Black = const(0x000000)
+Magenta = const(0xFF00FF)
+Cyan = const(0x00FFFF)
+
 IsPulse = BrainPadType.BrainPadType().IsPulse
 IsTick = (IsPulse == False)
 
@@ -385,8 +394,8 @@ class Controller:
             
         def In(self):            
             analogIn = pyb.ADC(self.pin)
-            v = analogIn.read() * 3.3 / 4096
-            v_scale = int(Scale(v, 0, 1, 0, 100))
+            v = analogIn.read()
+            v_scale = int(Scale(v, 0, 4096, 0, 100))
             return v_scale
         
         def Out(self, value):        
