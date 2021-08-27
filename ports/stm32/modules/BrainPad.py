@@ -168,12 +168,19 @@ class Controller:
             self.playTime = playtime
             self.volume = Scale(volume, 0, 100, 0, 50)      
                         
-        def Out(self, value):        
+        def Out(self, value):
+            vol = self.volume
+            
+            # MP doesn't accept freq = 0, we need vol = 0 for this case
+            if value == 0:
+                value = 1000
+                vol = 0
+                
             self.timer = pyb.Timer(self.ConvertPinToPwmTimer(), freq=value)
             self.channel = self.timer.channel(self.ConvertPinToPwmChannel(), pyb.Timer.PWM, pin=Pin(self.pin))
-            self.channel.pulse_width_percent(self.volume)
+            self.channel.pulse_width_percent(vol)
             
-            if value != 0:        
+            if self.playTime != 0:        
                 time.sleep(self.playTime)
                 self.channel.pulse_width_percent(0)
                 
