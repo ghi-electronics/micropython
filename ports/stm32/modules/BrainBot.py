@@ -10,7 +10,7 @@ class Invert:
     invertRightMotor = False;
 
 i2cBus = I2cBus(0x01);
-sound = Sound(Buzzer, 0.2, 50);
+sound = Sound(P0, 0.2, 50);
 neopixel = Neopixel(P12, 2);
 distance = Distance(P16, P15);
 
