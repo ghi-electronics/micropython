@@ -173,7 +173,7 @@ class Controller:
             self.channel = self.timer.channel(self.ConvertPinToPwmChannel(), pyb.Timer.PWM, pin=Pin(self.pin))
             self.channel.pulse_width_percent(self.volume)
             
-            if value != 0:        
+            if self.playTime != 0:        
                 time.sleep(self.playTime)
                 self.channel.pulse_width_percent(0)
                 
