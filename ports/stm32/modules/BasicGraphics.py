@@ -200,8 +200,8 @@ class BasicGraphics:
     
     def __init__(self, width, height):
         self.colorFormat = 1
-        self.width = width
-        self.height = height
+        self.width = int(width)
+        self.height = int(height)
                  
         self.buffer1bpp = framebuf.FrameBuffer(bytearray(int(width * height / 8)), width, height, framebuf.MONO_VLSB)
 
@@ -209,28 +209,21 @@ class BasicGraphics:
     def Clear(self):        
         self.buffer1bpp.fill(0)
 
-    def SetPixel(self, x, y, color):        
-        self.buffer1bpp.pixel(x,y,color)
+    def SetPixel(self, x, y, color):
+        _x = int(x)
+        _y = int(y)
+        self.buffer1bpp.pixel(_x,_y,color)
         
-    def SetPixelScale(self, x, y, hScale, vScale, color):
-        x = x*hScale;
-        y = y*vScale;
-        
-        for ix in range(hScale):
-            for iy in range(vScale):
-                self.SetPixel(x + ix, y + iy, color)
-        
-            
     def DrawCharacter(self, character, color, x, y, hScale, vScale):
         index = 5 * (character - 32)
         
         if (hScale != 1 or vScale != 1):
             for horizontalFontSize in range(5):
-                sx = x + horizontalFontSize
-                fontRow = mono8x5[index + horizontalFontSize];
-                for verticleFontSize in range(8):
-                    if ((fontRow & (1 << verticleFontSize)) != 0):
-                        self.SetPixelScale(sx, y + verticleFontSize, hScale, vScale, color)
+                for hs in range(hScale):
+                    for verticleFontSize in range(8):
+                        for vs in range (vScale):                                                
+                            if (mono8x5[index + horizontalFontSize] & (1 << verticleFontSize)) != 0:
+                                self.SetPixel(x + (horizontalFontSize * hScale) + hs, y + (verticleFontSize * vScale) + vs, color)
         else:
             for horizontalFontSize in range(5):
                 sx = x + horizontalFontSize
@@ -265,10 +258,10 @@ class BasicGraphics:
         for i in range(len(text)):
             if ord(text[i]) >=32 :
                 self.DrawCharacter(ord(text[i]), color, x, y, hScale, vScale)
-                x += 6
+                x += 6*hScale
             else:
                 if text[i] == '\n':
-                    y += 9
+                    y += 9 * vScale
                     x = originalX;
                 else:
                     if text[i] == '\r':

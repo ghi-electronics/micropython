@@ -56,9 +56,12 @@ class TickMatrixController(BasicGraphics.BasicGraphics):
         if (y < 0 or y > 4):
             return 0
         
-        index = (y * 5) + x
+        _x = int(x)
+        _y = int(y)
         
-        self.buffer[(y * 5) + x] = (color & 0xFF);
+        index = (_y * 5) + _x
+        
+        self.buffer[int(index)] = (color & 0xFF);
         
         #if color != 0:
             #self.ledMatrix[index].high()
