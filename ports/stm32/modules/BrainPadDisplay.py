@@ -72,39 +72,61 @@ class Display:
         self.Show()
     
     def Circle(self, x, y, radius):
+        _x = int(x)
+        _y = int(y)
         if BrainPadType.BrainPadType.IsPulse == False:
-            self.tickGfx.DrawCircle(self.color, x, y, radius)
+            self.tickGfx.DrawCircle(self.color, _x, _y, radius)
         else:
-            self.pulseGfx.DrawCircle(self.color, x, y, radius)
+            self.pulseGfx.DrawCircle(self.color, _x, _y, radius)
                 
     def Line(self, x1, y1, x2, y2):
+        _x1 = int(x1)
+        _y1 = int(y1)
+        _x2 = int(x2)
+        _y2 = int(y2)
         if BrainPadType.BrainPadType.IsPulse == False:
-            self.tickGfx.DrawLine(self.color, x1, y1, x2, y2)
+            self.tickGfx.DrawLine(self.color, _x1, _y1, _x2, _y2)
         else:
-            self.pulseGfx.DrawLine(self.color, x1, y1, x2, y2)
+            self.pulseGfx.DrawLine(self.color, _x1, _y1, _x2, _y2)
             
     def Rect(self, x, y, w, h):
+        _x = int(x)
+        _y = int(y)
+        _w = int(w)
+        _h = int(h)
+        
         if BrainPadType.BrainPadType.IsPulse == False:
-            self.tickGfx.DrawRectangle(self.color, x, y, w, h)
+            self.tickGfx.DrawRectangle(self.color, _x, _y, _w, _h)
         else:
-            self.pulseGfx.DrawRectangle(self.color, x, y, w, h)
+            self.pulseGfx.DrawRectangle(self.color, _x, _y, _w, _h)
             
     def FillRect(self, x, y, w, h):
         w = w + x
         h = h + y
         
-        for h1 in range(y,h):
-            for w1 in range(x,w):
-                self.Point(w1, h1, self.color)
+        _x = int(x)
+        _y = int(y)
+        _w = int(w)
+        _h = int(h)
+        
+        for h1 in range(_y,_h):
+            for w1 in range(_x,_w):
+                self.Point(_w1, _h1, self.color)
             
             
     def Point(self, x, y, c):
+        _x = int(x)
+        _y = int(y)
+        _c = int(c)
         if BrainPadType.BrainPadType.IsPulse == False:
-            self.tickGfx.SetPixel(x, y, c)
+            self.tickGfx.SetPixel(_x, _y, _c)
         else:
-            self.pulseGfx.SetPixel(x, y, c)
+            self.pulseGfx.SetPixel(_x, _y, _c)
             
     def Text(self, v, x, y):
+        _x = int(x)
+        _y = int(y)
+        
         if (type(v) is str):
             s = v
         else:
@@ -113,9 +135,14 @@ class Display:
         if BrainPadType.BrainPadType.IsPulse == False:
             self.tickGfx.DrawText(s)
         else:
-            self.pulseGfx.DrawString(s, self.color, x, y)
+            self.pulseGfx.DrawString(s, self.color, _x, _y)
             
     def TextEx(self, v, x, y, xscale, yscale):
+        _x = int(x)
+        _y = int(y)
+        _xscale = int(xscale)
+        _yscale = int(yscale)
+        
         if (type(v) is str):
             s = v
         else:
@@ -124,22 +151,30 @@ class Display:
         if BrainPadType.BrainPadType.IsPulse == False:
             self.tickGfx.DrawText(s)
         else:            
-            self.pulseGfx.DrawString(s, self.color, x, y, xscale, yscale)
+            self.pulseGfx.DrawString(s, self.color, _x, _y, _xscale, _yscale)
              
     def Color(self, c):
-        self.color = c
+        self.color = int(c)
         
     def CreateImage(self, width, height, data, hScale = 1, vScale = 1, transform = BasicGraphics.Image.NoTransform):
         if BrainPadType.BrainPadType.IsPulse == False:
             hScale = 1
             vScale = 1
 
-        self.image = BasicGraphics.Image(data, width, height, hScale, vScale, transform)
+        _width = int(width)
+        _height = int(height)
+        _hScale = int(hScale)
+        _vScale = int(vScale)
+        _transform = int(transform)                
+        
+        self.image = BasicGraphics.Image(data, _width, _height, _hScale, _vScale, _transform)
         return self.image
     
     def Image(self, image, x, y):
+        _x = int(x)
+        _y = int(y)
         if BrainPadType.BrainPadType.IsPulse == False:
-            self.tickGfx.DrawImage(image, x, y)
+            self.tickGfx.DrawImage(image, _x, _y)
         else:
-            self.pulseGfx.DrawImage(image, x, y)
+            self.pulseGfx.DrawImage(image, _x, _y)
                             
