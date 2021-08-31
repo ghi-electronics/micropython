@@ -1,8 +1,8 @@
 from BrainPad import *
 
 GROUND_SENSOR_NONE = const(0)
-GROUND_SENSOR_LEFT = const(1)
-GROUND_SENSOR_RIGHT = const(2)
+GROUND_SENSOR_RIGHT = const(1)
+GROUND_SENSOR_LEFT = const(2)
 GROUND_SENSOR_BOTH = const(3)
 
 class Invert:
@@ -14,8 +14,8 @@ sound = Sound(P0, 0, 50);
 neopixel = Neopixel(P12, 2);
 distance = Distance(P16, P15);
 
-leftLineSensor = Digital(P13);            
-rightLineSensor = Digital(P14);                 
+leftLineSensor = Digital(P14);            
+rightLineSensor = Digital(P13);                 
 
 data5 = bytearray(5)
 data4 = bytearray(4)
@@ -77,7 +77,7 @@ def Headlight(color):
     Out(i2cBus, data4)
     
 def Taillight(lelfColor, rightColor):
-    data2 = [lelfColor, rightColor]
+    data2 = [rightColor, lelfColor]
     Out(neopixel, data2)
     
 def GroundSensor():
