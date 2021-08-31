@@ -17,10 +17,18 @@ def ButtonScanTime(value):
 rockerX = Analog(P4);
 rockerY = Analog(P3);
 motor = Digital(P8);
-sound = Sound(P0, 0.2, 50);
+sound = Sound(P0, 0, 50);
     
 def Beep():
     Out(sound, 1000)
+    Wait(0.2)
+    Out(sound, 0)
+    
+def SoundOn(frequency = 1000):
+    Out(sound, frequency)
+    
+def SoundOff():
+    Out(sound, 0)
     
 def ButtonUp():
     return In(GamerButton.buttonUp) != 0;
