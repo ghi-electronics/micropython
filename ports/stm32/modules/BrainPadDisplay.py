@@ -111,7 +111,7 @@ class Display:
         
         for h1 in range(_y,_h):
             for w1 in range(_x,_w):
-                self.Point(_w1, _h1, self.color)
+                self.Point(w1, h1, self.color)
             
             
     def Point(self, x, y, c):
