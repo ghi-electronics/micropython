@@ -10,7 +10,10 @@ class Invert:
     invertRightMotor = False;
 
 i2cBus = I2cBus(0x01);
-sound = Sound(P0, 0, 50);
+
+if IsPulse==True:
+    sound = Sound(P0, 0, 50);
+    
 neopixel = Neopixel(P12, 2);
 distance = Distance(P16, P15);
 
@@ -21,15 +24,18 @@ data5 = bytearray(5)
 data4 = bytearray(4)
 
 def Beep():
-    Out(sound, 1000)
-    Wait(0.2)
-    Out(sound, 0)
+    if IsPulse==True:
+        Out(sound, 1000)
+        Wait(0.2)
+        Out(sound, 0)
     
 def SoundOn(frequency = 1000):
-    Out(sound, frequency)
+    if IsPulse==True:
+        Out(sound, frequency)
     
 def SoundOff():
-    Out(sound, 0)
+    if IsPulse==True:
+        Out(sound, 0)
     
 def Move(leftSpeed, rightSpeed):
     if (Invert.invertLeftMotor == True):
