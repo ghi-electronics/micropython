@@ -45,6 +45,9 @@ AccelX = const(25)
 AccelY = const(26)
 AccelZ = const(27)
 
+Celsius = const(28)
+Fahrenheit = const(29)
+
 Red = const(0xFF0000)
 Green = const(0x00FF00)
 Blue = const(0x0000FF)
@@ -151,6 +154,9 @@ def Servo(pin):
 
 def Sound(pin, playtime, volume):    
     return Controller.Sound(pin, playtime, volume)
+
+def Temperature(unit):
+    return Controller.Temperature(unit)
 
 class Controller:
     class Sound:
@@ -552,7 +558,34 @@ class Controller:
             
         def OutIn(self, write, result):
             self.i2cControl.readfrom_mem_into(self.SlaveAddress, write[0], result)
-                        
+            
+    class Temperature:
+        def __init__(self, unit):            
+            self.unit = unit;
+            
+            if self.unit != Celsius and self.unit != Fahrenheit:
+                raise Exception("unit must be Celsius or Fahrenheit.")
+            
+            self.adc = machine.ADC(17)
+            
+        def In(self):
+            read = self.adc.read_u16()
+            v = Scale(read, 0, 65535, 0, 4095)
+            v = v * 1.1
+            ts1 = 0x3fd
+            ts2 = 0x557
+            
+            t1 = (110 - 30) * 1.0
+            t2 = (ts2 - ts1) * 1.0
+            t3 = (v - ts1) * 1.0
+            
+            t = t1 / t2 * t3 + 30
+            
+            if self.unit == Celsius:
+                return t
+            else:
+                return (t * 18) / 10 + 32
+
 class Display:        
     display = BrainPadDisplay.Display()
     
